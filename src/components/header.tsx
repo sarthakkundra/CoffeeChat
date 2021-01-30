@@ -1,8 +1,17 @@
 import { Flex, Heading, IconButton, Link } from "@chakra-ui/react";
 import { Bell, User } from "@emotion-icons/boxicons-solid";
-import React from "react";
+import React, { useContext, Fragment } from "react";
+import firebase from 'firebase';
+import  { FirebaseAuth } from 'react-firebaseui';
+import  AuthContext  from '../context/authentication/AuthContext';
+import { AuthProvider } from "../context/authentication/AuthState";
 
+ 
 export default function Header() {
+
+  const handleAuth = () => {
+
+  }
   return (
     <Flex
       maxW="5xl"
@@ -35,6 +44,7 @@ export default function Header() {
           size="md"
           p={2}
           isRound
+          onClick={handleAuth}
         />
       </Flex>
     </Flex>
