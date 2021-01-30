@@ -2,6 +2,7 @@ import React from "react";
 import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
 import { Router } from "@reach/router";
 import Index from "./pages";
+import Profile from "./pages/profile";
 
 import {AuthProvider} from './context/authentication/AuthState';
 
@@ -19,6 +20,7 @@ function App() {
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <Router>
         <Index path="/" />
+        <Profile path="/profile" />
       </Router>
     </ChakraProvider>
     </AuthProvider>
