@@ -2,6 +2,7 @@ import { Flex, Heading, IconButton, Link } from "@chakra-ui/react";
 import { Bell, User } from "@emotion-icons/boxicons-solid";
 import React, { useContext, Fragment } from "react";
 import { useNavigate } from "@reach/router";
+import { ReactComponent as Logo } from "../images/coffeechat-05.svg";
 
 export default function Header() {
   const handleAuth = () => {};
@@ -14,8 +15,8 @@ export default function Header() {
       alignItems="center"
       py={8}
     >
-      <Flex>
-        <Heading>CoffeeChat</Heading>
+      <Flex w="3xs" h="auto">
+        <Logo style={{ width: "100%", height: "auto" }} />
       </Flex>
       <Flex alignItems="center">
         <Link href="/" mx={2}>
