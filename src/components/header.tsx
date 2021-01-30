@@ -1,10 +1,6 @@
 import { Flex, Heading, IconButton, Link } from "@chakra-ui/react";
 import { Bell, User } from "@emotion-icons/boxicons-solid";
 import React, { useContext, Fragment } from "react";
-import firebase from "firebase";
-import { FirebaseAuth } from "react-firebaseui";
-import AuthContext from "../context/authentication/AuthContext";
-import { AuthProvider } from "../context/authentication/AuthState";
 import { useNavigate } from "@reach/router";
 
 export default function Header() {
@@ -45,7 +41,6 @@ export default function Header() {
           p={2}
           onClick={() => navigate("/profile")}
           isRound
-          onClick={handleAuth}
         />
       </Flex>
     </Flex>
