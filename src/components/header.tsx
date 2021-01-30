@@ -21,7 +21,9 @@ export default function Header() {
         <Link href="/" mx={2}>
           home
         </Link>
-        <Link mx={2}>connect</Link>
+        <Link mx={2} href="/connect">
+          connect
+        </Link>
         <Link mx={2}>about</Link>
         <IconButton
           aria-label="Notifications"

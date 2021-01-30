@@ -4,7 +4,8 @@ import { Router } from "@reach/router";
 import Index from "./pages";
 import Profile from "./pages/profile";
 
-import {AuthProvider} from './context/authentication/AuthState';
+import { AuthProvider } from "./context/authentication/AuthState";
+import Connect from "./pages/connect";
 
 const config = {
   initialColorMode: "light",
@@ -16,13 +17,14 @@ const theme = extendTheme({ config });
 function App() {
   return (
     <AuthProvider>
-    <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <Router>
-        <Index path="/" />
-        <Profile path="/profile" />
-      </Router>
-    </ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <Router>
+          <Index path="/" />
+          <Profile path="/profile" />
+          <Connect path="/connect" />
+        </Router>
+      </ChakraProvider>
     </AuthProvider>
   );
 }
