@@ -38,6 +38,7 @@ export default function List({ profiles }: ListProps) {
               alignItems="center"
               flex="0 0 auto"
               w="100%"
+              key={profile.id}
             >
               <Flex alignItems="center">
                 <Image
@@ -79,7 +80,7 @@ export default function List({ profiles }: ListProps) {
                       icon={<RightArrowAlt />}
                       variant="ghost"
                       onClick={async () => {
-                        const roomID = await createRoom(profile.uid);
+                        const roomID = await createRoom(profile.id);
                         navigate(`/chat/${roomID}`);
                       }}
                     />

@@ -6,6 +6,8 @@ import withAuth from "../../hocs/withAuth";
 import Carousel from "./carousel";
 import Filter from "./filter";
 import List from "./list";
+import firebase from "firebase";
+import "firebase/firestore";
 
 export default withAuth(function Connect(props: RouteComponentProps) {
   const [profiles, setProfiles] = useState<any>([]);
@@ -21,27 +23,16 @@ export default withAuth(function Connect(props: RouteComponentProps) {
   }, [industryFilter]);
 
   useEffect(() => {
-    setProfiles([
-      {
-        uid: "FzY2QhlaoxkCsghSpFuA",
-        name: "Utkarsh",
-        image:
-          "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-        position: "CTO & Co-founder",
-      },
-      {
-        name: "Angela",
-        image:
-          "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-        position: "CTO & Co-founder",
-      },
-      {
-        name: "Sarthak",
-        image:
-          "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-        position: "CTO & Co-founder",
-      },
-    ]);
+    const db = firebase.firestore();
+    db.collection("users")
+      .get()
+      .then((collectionSnapshot) => {
+        const data = collectionSnapshot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        console.log(data);
+        setProfiles(data);
+      });
   }, []);
 
   return (
