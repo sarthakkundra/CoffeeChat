@@ -19,7 +19,7 @@ export default function Header() {
       justifyContent="space-between"
       m="auto"
       alignItems="center"
-      py={8}
+      py={4}
     >
       <Flex w="3xs" h="auto">
         <Logo style={{ width: "100%", height: "auto" }} />

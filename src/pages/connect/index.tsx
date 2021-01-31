@@ -48,7 +48,9 @@ export default withAuth(function Connect(props: RouteComponentProps) {
     <Box pos="fixed" h="100vh" w="100%">
       <Header />
       <Flex bg="#5C3C1E" px={24} py={6}>
-        <Heading color="#ECE2D0">Find someone to grab a coffee</Heading>
+        <Heading size="md" color="#ECE2D0">
+          Find someone to grab a coffee
+        </Heading>
       </Flex>
       <Flex w="100%" m="auto" pl={24} h="75%" overflowY="auto">
         <Filter

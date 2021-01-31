@@ -19,7 +19,12 @@ const config = {
   useSystemColorMode: false,
 };
 
-const customTheme = extendTheme({ config }, theme);
+const customTheme = extendTheme(
+  {
+    config,
+  },
+  theme
+);
 
 function App() {
   return (
