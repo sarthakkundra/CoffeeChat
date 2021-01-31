@@ -22,7 +22,16 @@ const UserProvider = ({ children }: any) => {
       const collection = db.collection("users");
       const userDetails = collection.doc(user.uid);
       userDetails.onSnapshot((snapshot) => {
-        setUserDetails(snapshot.data() as User);
+        const data = snapshot.data();
+        if (data) {
+          setUserDetails(snapshot.data() as User);
+        } else {
+          collection.doc(user.uid).set({
+            firstName: user.displayName?.split(" ")[0],
+            lastName: user.displayName?.split(" ")[1],
+            image: user.photoURL,
+          });
+        }
       });
     }
   }, [user]);

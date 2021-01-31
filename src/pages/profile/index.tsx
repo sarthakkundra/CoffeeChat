@@ -2,6 +2,7 @@ import {
   Flex,
   Grid,
   Image,
+  Input,
   Tab,
   TabList,
   TabPanel,
