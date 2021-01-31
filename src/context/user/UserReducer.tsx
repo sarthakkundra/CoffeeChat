@@ -55,7 +55,15 @@ export const useUser = () => {
     userDetails.update(userObject);
   };
 
-  return { user, updateUser };
+  const getUser = async (id: string) => {
+    const db = firebase.firestore();
+    const collection = db.collection("users");
+    const userDetails = collection.doc(id);
+    const userData = await userDetails.get();
+    return userData.data();
+  };
+
+  return { user, updateUser, getUser };
 };
 
 export default UserProvider;

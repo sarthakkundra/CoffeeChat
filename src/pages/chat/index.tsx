@@ -1,9 +1,11 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/header";
 import ChatProvider from "../../context/ChatProvider";
 import ChatBox from "./chatbox";
+import firebase from "firebase";
+import "firebase/firestore";
 
 interface ChatRoomProps {
   roomId?: string;
@@ -19,7 +21,7 @@ export default function Chat(props: ChatProps) {
           <Header />
         </Box>
         <Box maxH="80%">
-          <ChatBox />
+          <ChatBox roomId={props.roomId} />
         </Box>
       </Flex>
     </ChatProvider>

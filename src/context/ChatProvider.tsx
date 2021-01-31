@@ -42,7 +42,7 @@ const ChatProvider = ({ children, roomId }: any) => {
     const collection = db.collection("chatrooms");
     const room = collection.doc(roomId);
     setChatRoom(room);
-  }, []);
+  }, [roomId]);
 
   useEffect(() => {
     if (chatRoom) {

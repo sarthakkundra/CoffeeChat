@@ -5,12 +5,19 @@ import { Send } from "@emotion-icons/boxicons-regular";
 import ChannelList from "./channelList";
 import { useAuth } from "../../context/authentication/AuthContext";
 import withAuth from "../../hocs/withAuth";
+import { VideoPlus } from "@emotion-icons/boxicons-solid";
+import { navigate } from "@reach/router";
+import firebase from "firebase";
+import "firebase/firestore";
+import { useUser } from "../../context/user/UserReducer";
 
-export default withAuth(function ChatBox() {
+export default withAuth(function ChatBox(props: any) {
   const { sendMessage, messages } = useChat();
   const { user } = useAuth();
+  const { getUser } = useUser();
   const [inputText, setInputText] = useState("");
-
+  const [chatUser, setChatUser] = useState<any>();
+  const [isLoading, setLoading] = useState(true);
   const scrollRef = useRef<any>(null);
 
   const sendMessageButton = (text: string) => {
@@ -18,14 +25,35 @@ export default withAuth(function ChatBox() {
   };
 
   useEffect(() => {
-    if (scrollRef) {
+    const db = firebase.firestore();
+    db.collection("chatrooms")
+      .doc(props.roomId)
+      .get()
+      .then((snapshot) => {
+        const chatRoom = snapshot.data();
+        const otherUserID = chatRoom?.users.filter((u: any) => {
+          return u !== user?.uid;
+        })[0];
+        getUser(otherUserID).then((user) => {
+          setChatUser(user);
+          console.log(user);
+          setLoading(false);
+        });
+      });
+  }, [props.roomId]);
+
+  useEffect(() => {
+    if (scrollRef && scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef?.current?.scrollHeight;
     }
   }, [messages]);
 
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <Flex overflow="auto" h="100%">
-      {/* <ChannelList /> */}
+      <ChannelList />
       <Flex
         flex={4}
         mx={4}
@@ -36,12 +64,21 @@ export default withAuth(function ChatBox() {
       >
         <Flex
           boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;"
-          mb={4}
-          p={4}
-          direction="column"
+          justifyContent="space-between"
         >
-          <Heading size="md">Full Name</Heading>
-          <Text size="md">Position</Text>
+          <Flex mb={4} p={4} direction="column">
+            <Heading size="md">
+              {chatUser.firstName} {chatUser.lastName}
+            </Heading>
+            <Text size="md">{chatUser.experience?.jobTitle || ""}</Text>
+          </Flex>
+          <Flex mb={4} p={4}>
+            <IconButton
+              aria-label="video"
+              icon={<VideoPlus />}
+              onClick={() => navigate("https://meet.google.com/new")}
+            />
+          </Flex>
         </Flex>
         <Flex
           h="100%"
