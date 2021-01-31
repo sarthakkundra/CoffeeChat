@@ -4,8 +4,9 @@ import { Router } from "@reach/router";
 import Index from "./pages";
 import Profile from "./pages/profile";
 
-import { AuthProvider } from "./context/authentication/AuthState";
+import AuthProvider from "./context/authentication/AuthContext";
 import Connect from "./pages/connect";
+import Login from "./pages/login";
 
 const config = {
   initialColorMode: "light",
@@ -21,6 +22,7 @@ function App() {
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Router>
           <Index path="/" />
+          <Login path="/login" />
           <Profile path="/profile" />
           <Connect path="/connect" />
         </Router>
