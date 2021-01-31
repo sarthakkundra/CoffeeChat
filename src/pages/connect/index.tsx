@@ -1,10 +1,11 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header";
 import withAuth from "../../hocs/withAuth";
 import Carousel from "./carousel";
 import Filter from "./filter";
+import List from "./list";
 
 export default withAuth(function Connect(props: RouteComponentProps) {
   const [profiles, setProfiles] = useState<any>([]);
@@ -55,9 +56,12 @@ export default withAuth(function Connect(props: RouteComponentProps) {
   }, []);
 
   return (
-    <>
+    <Box pos="fixed" h="100vh" w="100%">
       <Header />
-      <Flex alignItems="center" w="100%" maxW={"5xl"} m="auto">
+      <Flex bg="#5C3C1E" px={24} py={6}>
+        <Heading color="#ECE2D0">Find someone to grab a coffee</Heading>
+      </Flex>
+      <Flex w="100%" m="auto" pl={24} h="75%" overflowY="auto">
         <Filter
           setIndustryFilter={setIndustryFilter}
           setAvailabilityFilter={setAvailabilityFilter}
@@ -66,8 +70,8 @@ export default withAuth(function Connect(props: RouteComponentProps) {
           setVideo={setVideo}
           setLocationFilter={setLocationFilter}
         />
-        <Carousel profiles={profiles} />
+        <List profiles={profiles} />
       </Flex>
-    </>
+    </Box>
   );
 });

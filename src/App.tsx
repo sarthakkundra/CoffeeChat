@@ -4,11 +4,11 @@ import {
   extendTheme,
   ColorModeScript,
   CSSReset,
+  theme,
 } from "@chakra-ui/react";
 import { Router } from "@reach/router";
 import Index from "./pages";
 import Profile from "./pages/profile";
-
 import AuthProvider from "./context/authentication/AuthContext";
 import Connect from "./pages/connect";
 import Login from "./pages/login";
@@ -19,12 +19,12 @@ const config = {
   useSystemColorMode: false,
 };
 
-const theme = extendTheme({ config });
+const customTheme = extendTheme({ config }, theme);
 
 function App() {
   return (
     <AuthProvider>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={customTheme}>
         <CSSReset />
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Router>

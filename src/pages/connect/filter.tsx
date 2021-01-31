@@ -24,7 +24,7 @@ export interface FilterProps {
 
 export default function Filter(props: FilterProps) {
   return (
-    <Flex direction="column" pr={4}>
+    <Flex direction="column" pr={4} flex={1}>
       <Heading py={4} size="md">
         I'm looking for...
       </Heading>

@@ -18,7 +18,7 @@ export default function Chat(props: ChatProps) {
         <Box>
           <Header />
         </Box>
-        <Box h="100%">
+        <Box maxH="80%">
           <ChatBox />
         </Box>
       </Flex>

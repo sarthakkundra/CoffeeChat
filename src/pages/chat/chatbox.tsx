@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, IconButton, Input, Text } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
 import { send } from "process";
 import React, { useEffect, useRef, useState } from "react";
@@ -6,8 +6,9 @@ import { useChat } from "../../context/ChatProvider";
 import { Send } from "@emotion-icons/boxicons-regular";
 import ChannelList from "./channelList";
 import { useAuth } from "../../context/authentication/AuthContext";
+import withAuth from "../../hocs/withAuth";
 
-export default function ChatBox() {
+export default withAuth(function ChatBox() {
   const { sendMessage, messages } = useChat();
   const { user } = useAuth();
   const [inputText, setInputText] = useState("");
@@ -25,10 +26,31 @@ export default function ChatBox() {
   }, [messages]);
 
   return (
-    <Flex h="100%" maxW="5xl" py={10} m="auto" overflow="auto">
+    <Flex overflow="auto" h="100%">
       <ChannelList />
-      <Flex flex={3} direction="column" px={10}>
-        <Flex h="100%" overflowY="scroll" direction="column" ref={scrollRef}>
+      <Flex
+        flex={4}
+        direction="column"
+        border="1px solid rgba(0,0,0,0.2)"
+        borderRadius={10}
+        maxH="100%"
+      >
+        <Flex
+          boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;"
+          mb={4}
+          p={4}
+          direction="column"
+        >
+          <Heading size="md">Full Name</Heading>
+          <Text size="md">Position</Text>
+        </Flex>
+        <Flex
+          h="100%"
+          overflowY="scroll"
+          direction="column"
+          ref={scrollRef}
+          px={4}
+        >
           {messages.map((message) => {
             return (
               <Flex
@@ -46,10 +68,11 @@ export default function ChatBox() {
             );
           })}
         </Flex>
-        <Flex py={8}>
+        <Flex py={4} px={2}>
           <Input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
+            placeholder="Type a message"
           />
           <IconButton
             p={1}
@@ -66,4 +89,4 @@ export default function ChatBox() {
       </Flex>
     </Flex>
   );
-}
+});
