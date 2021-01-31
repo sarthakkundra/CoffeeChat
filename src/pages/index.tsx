@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Flex, Heading, Icon, Text } from "@chakra-ui/react";
 import { RouteComponentProps, useNavigate } from "@reach/router";
 import Header from "../components/header";
+import Footer from '../components/footer';
 import { ReactComponent as Banner } from "../images/banner.svg";
 import { ReactComponent as MakeProfile } from "../images/makeprofile.svg";
 import { ReactComponent as Connected } from "../images/connected.svg";
@@ -92,6 +93,7 @@ export default function Index(props: RouteComponentProps) {
           </Flex>
         </Flex>
       </Flex>
+      <Footer />
     </>
   );
 }
