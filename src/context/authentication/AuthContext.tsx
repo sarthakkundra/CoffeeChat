@@ -54,7 +54,12 @@ export const useLoginWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
   };
-  return { login };
+
+  const logout = () => {
+    firebase.auth().signOut();
+  };
+
+  return { login, logout };
 };
 
 export const useAuth = () => {
