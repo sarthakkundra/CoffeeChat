@@ -33,15 +33,6 @@ export default function Header() {
         </Link>
         <Link mx={2}>about</Link>
         <IconButton
-          aria-label="Notifications"
-          icon={<Bell />}
-          mx={2}
-          variant="ghost"
-          size="md"
-          p={2}
-          isRound
-        />
-        <IconButton
           aria-label="Profile"
           icon={<User />}
           mx={2}

@@ -27,7 +27,7 @@ const Footer = () => {
     <Spacer />
     <Box style={boxStyle} >
     <Button style={buttonStyle} borderColor="whiteAlpha.500" variant="outline">
-    <Link style={buttonText} href="https://www.globalgiving.org/search/?size=25&nextPage=1&sortField=sortorder&selectedCountries=00unista&selectedThemes=env&selectedRecognitions=projectoftheMonth&loadAllResults=true">Help the Cause</Link>
+    <Link style={buttonText} href="https://www.globalgiving.org/">Help the Cause</Link>
     <img style={iconStyle} src="https://img.icons8.com/dotty/80/000000/charity.png"/>
   </Button>
   </Box>
@@ -43,7 +43,7 @@ const Footer = () => {
 }
 
 var footerStyle = {
-    backgroundColor: "#582d4d",
+    backgroundColor: "#AF7277",
     marginTop: "20px",
     height: "10rem"
 }
