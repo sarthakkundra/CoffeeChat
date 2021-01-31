@@ -11,6 +11,7 @@ import {
 import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header";
+import { useUser } from "../../context/user/UserReducer";
 import withAuth from "../../hocs/withAuth";
 import Education from "./education";
 import Experience from "./experience";
@@ -44,20 +45,9 @@ export interface User {
 }
 
 export default withAuth(function Profile(props: RouteComponentProps) {
-  const [user, setUser] = useState<User>();
+  const { user, updateUser } = useUser();
 
-  useEffect(() => {
-    const user = {
-      firstName: "Utkarsh",
-      lastName: "Goel",
-      location: "Hong Kong",
-      timezone: "HKT",
-      languages: ["Hindi", "English"],
-      image:
-        "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-    };
-    setUser(user);
-  }, []);
+  console.log(user);
 
   return (
     <>
@@ -83,13 +73,13 @@ export default withAuth(function Profile(props: RouteComponentProps) {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Personal user={user} />
+                <Personal user={user} setUser={updateUser} />
               </TabPanel>
               <TabPanel>
-                <Education user={user} />
+                <Education user={user} setUser={updateUser} />
               </TabPanel>
               <TabPanel>
-                <Experience user={user} />
+                <Experience user={user} setUser={updateUser} />
               </TabPanel>
             </TabPanels>
           </Tabs>

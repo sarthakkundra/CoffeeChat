@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -16,9 +17,10 @@ import InputWithTabs from "../../components/inputWithTabs";
 
 export interface EducationProps {
   user: User | undefined;
+  setUser: (user: Partial<User>) => void;
 }
 
-export default function Experience({ user }: EducationProps) {
+export default function Experience({ user, setUser }: EducationProps) {
   const { handleSubmit, errors, register, setValue, getValues } = useForm();
   const [experienceLevel, setExperienceLevel] = useState(
     user?.experience?.experienceLevel || "New"
@@ -34,6 +36,9 @@ export default function Experience({ user }: EducationProps) {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    setUser({
+      experience: { ...data },
+    });
   };
 
   return (
@@ -136,6 +141,9 @@ export default function Experience({ user }: EducationProps) {
           </FormControl>
         </>
       )}
+      <Button colorScheme="green" type="submit" my={10}>
+        Update
+      </Button>
     </form>
   );
 }

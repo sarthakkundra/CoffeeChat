@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -12,13 +13,17 @@ import { User } from ".";
 
 export interface EducationProps {
   user: User | undefined;
+  setUser: (user: Partial<User>) => void;
 }
 
-export default function Education({ user }: EducationProps) {
+export default function Education({ user, setUser }: EducationProps) {
   const { handleSubmit, errors, register, setValue } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data);
+    setUser({
+      education: { ...data },
+    });
   };
 
   return (
@@ -71,6 +76,9 @@ export default function Education({ user }: EducationProps) {
           {errors.name && errors.name.message}
         </FormErrorMessage>
       </FormControl>
+      <Button colorScheme="green" type="submit" my={10}>
+        Update
+      </Button>
     </form>
   );
 }

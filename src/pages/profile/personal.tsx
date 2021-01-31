@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -12,9 +13,10 @@ import { User } from ".";
 
 export interface PersonalProps {
   user: User | undefined;
+  setUser: (user: Partial<User>) => void;
 }
 
-export default function Personal({ user }: PersonalProps) {
+export default function Personal({ user, setUser }: PersonalProps) {
   const { handleSubmit, errors, register, setValue } = useForm();
 
   useEffect(() => {
@@ -23,6 +25,9 @@ export default function Personal({ user }: PersonalProps) {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    setUser({
+      ...data,
+    });
   };
 
   return (
@@ -67,10 +72,10 @@ export default function Personal({ user }: PersonalProps) {
         </FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.name} pb={4}>
-        <FormLabel htmlFor="location">Timezone</FormLabel>
+        <FormLabel htmlFor="timezone">Timezone</FormLabel>
         <Input
-          name="location"
-          placeholder="Location"
+          name="timezone"
+          placeholder="+08:00"
           ref={register()}
           defaultValue={user?.timezone}
         />
@@ -90,6 +95,10 @@ export default function Personal({ user }: PersonalProps) {
           {errors.name && errors.name.message}
         </FormErrorMessage>
       </FormControl>
+
+      <Button colorScheme="green" type="submit" my={10}>
+        Update
+      </Button>
     </form>
   );
 }
