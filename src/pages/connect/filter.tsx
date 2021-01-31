@@ -24,8 +24,8 @@ export interface FilterProps {
 
 export default function Filter(props: FilterProps) {
   return (
-    <Flex direction="column" pr={4}>
-      <Heading py={4} size="md">
+    <Flex direction="column" pr={8} flex={1} color="#A26769">
+      <Heading pt={4} size="md" color="#582C4D">
         I'm looking for...
       </Heading>
       <Box py={4}>

@@ -7,7 +7,7 @@ interface AuthContext {
   isAuthenticated: boolean;
   isLoading: boolean;
   firebaseApp?: firebase.app.App;
-  user?: any;
+  user?: firebase.User | null;
 }
 
 const AuthContext = React.createContext<AuthContext>({
@@ -63,8 +63,8 @@ export const useLoginWithGoogle = () => {
 };
 
 export const useAuth = () => {
-  const { isAuthenticated, isLoading } = useContext(AuthContext);
-  return { isAuthenticated, isLoading };
+  const { isAuthenticated, isLoading, user } = useContext(AuthContext);
+  return { isAuthenticated, isLoading, user };
 };
 
 export default AuthProvider;

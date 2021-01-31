@@ -28,34 +28,33 @@ export default function Index(props: RouteComponentProps) {
         </Heading>
         <Flex direction="column">
           <Flex alignItems="center" pb={2}>
-            <Icon
-              as={CheckCircle}
-              boxSize="2em"
-              color="rgb(231,197,181)"
-              mr={4}
-            />
-            <Text>A role model in the industry/workplace</Text>
+            <Icon as={CheckCircle} boxSize="2em" color="#D5B9B2" mr={4} />
+            <Text>
+              A{" "}
+              <span style={{ color: "#D5B9B2", fontWeight: "bold" }}>
+                role model
+              </span>{" "}
+              in the industry/workplace
+            </Text>
           </Flex>
           <Flex alignItems="center" pb={2}>
-            <Icon
-              as={CheckCircle}
-              boxSize="2em"
-              color="rgb(231,197,181)"
-              mr={4}
-            />
+            <Icon as={CheckCircle} boxSize="2em" color="#A26769" mr={4} />
             <Text>
-              A mentor to consult about career progression and success in life
+              A{" "}
+              <span style={{ color: "#A26769", fontWeight: "bold" }}>
+                mentor
+              </span>{" "}
+              to consult about career progression and success in life
             </Text>
           </Flex>
           <Flex alignItems="center">
-            <Icon
-              as={CheckCircle}
-              boxSize="2em"
-              color="rgb(231,197,181)"
-              mr={4}
-            />
+            <Icon as={CheckCircle} boxSize="2em" color="#582C4D" mr={4} />
             <Text>
-              A friend to have a conversation beyond work-related issues
+              A{" "}
+              <span style={{ color: "#582C4D", fontWeight: "bold" }}>
+                friend
+              </span>{" "}
+              to have a conversation beyond work-related issues
             </Text>
           </Flex>
         </Flex>
@@ -65,7 +64,7 @@ export default function Index(props: RouteComponentProps) {
             borderRadius="full"
             size="lg"
             colorScheme="orange"
-            backgroundColor="#D69F7E"
+            backgroundColor="#A26769"
             onClick={() => navigate("/connect")}
           >
             It's simple with CoffeeChat

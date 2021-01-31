@@ -1,0 +1,8 @@
+{firstName: string;
+  lastName: string;
+  location: string;
+  timezone: string;
+  languages: string[];
+  image: string;
+  education?: EducationData;
+  experience?: ExperienceData;}

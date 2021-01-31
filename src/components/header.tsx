@@ -11,14 +11,15 @@ import {
 export default function Header() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const { logout } = useLoginWithGoogle();
+  const { login, logout } = useLoginWithGoogle();
+
   return (
     <Flex
-      maxW="5xl"
+      maxWidth="5xl"
       justifyContent="space-between"
       m="auto"
       alignItems="center"
-      py={8}
+      py={4}
     >
       <Flex w="3xs" h="auto">
         <Logo style={{ width: "100%", height: "auto" }} />
@@ -55,7 +56,9 @@ export default function Header() {
             Sign Out
           </Button>
         ) : (
-          <></>
+          <Button mx={2} onClick={() => login()}>
+            Sign In
+          </Button>
         )}
       </Flex>
     </Flex>
