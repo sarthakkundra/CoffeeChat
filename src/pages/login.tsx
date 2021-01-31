@@ -21,6 +21,7 @@ export default withoutAuth(function Login(props: RouteComponentProps) {
         <Flex direction="column">
           <Heading py={10}>Login to CoffeeChat</Heading>
           <Button variant="outline" onClick={onGoogleSignIn}>
+          <img style={gIcon} src="https://img.icons8.com/fluent/48/000000/google-logo.png"/>
             Sign in with Google
           </Button>
         </Flex>
@@ -28,3 +29,8 @@ export default withoutAuth(function Login(props: RouteComponentProps) {
     </>
   );
 });
+
+var gIcon = {
+  height: "70%",
+  marginRight: "10px"
+}
