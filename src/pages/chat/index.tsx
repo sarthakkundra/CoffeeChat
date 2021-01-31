@@ -1,4 +1,4 @@
-import { Flex, Input } from "@chakra-ui/react";
+import { Box, Flex, Input } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
 import React from "react";
 import Header from "../../components/header";
@@ -14,8 +14,14 @@ type ChatProps = RouteComponentProps & ChatRoomProps;
 export default function Chat(props: ChatProps) {
   return (
     <ChatProvider roomId={props.roomId}>
-      <Header />
-      <ChatBox />
+      <Flex pos="fixed" h="100vh" direction="column" w="100%">
+        <Box>
+          <Header />
+        </Box>
+        <Box h="100%">
+          <ChatBox />
+        </Box>
+      </Flex>
     </ChatProvider>
   );
 }

@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <Flex
-      maxW="5xl"
+      maxWidth="5xl"
       justifyContent="space-between"
       m="auto"
       alignItems="center"
