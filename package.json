@@ -2,7 +2,6 @@
   "name": "coffeechat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://coffeechat.space",
   "dependencies": {
     "@chakra-ui/react": "^1.1.6",
     "@emotion-icons/boxicons-logos": "^3.0.0",
@@ -19,6 +18,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^16.9.8",
     "cuid": "^2.1.8",
+    "emotion-icons": "^3.6.0",
     "firebase": "^8.2.5",
     "framer-motion": "^3.2.2-rc.1",
     "react": "^17.0.1",

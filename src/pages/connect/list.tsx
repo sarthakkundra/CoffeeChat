@@ -60,7 +60,7 @@ export default function List({ profiles }: ListProps) {
               <Flex mr={4}>
                 <IconButton
                   aria-label="like"
-                  icon={<Heart />}
+                  icon={<Heart size="48" />}
                   variant="ghost"
                 />
                 <Flex
@@ -77,7 +77,7 @@ export default function List({ profiles }: ListProps) {
                   <Box>
                     <IconButton
                       aria-label="like"
-                      icon={<RightArrowAlt />}
+                      icon={<RightArrowAlt size="48" />}
                       variant="ghost"
                       onClick={async () => {
                         const roomID = await createRoom(profile.id);
