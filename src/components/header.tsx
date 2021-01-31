@@ -11,7 +11,8 @@ import {
 export default function Header() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const { logout } = useLoginWithGoogle();
+  const { login, logout } = useLoginWithGoogle();
+
   return (
     <Flex
       maxW="5xl"
@@ -55,7 +56,9 @@ export default function Header() {
             Sign Out
           </Button>
         ) : (
-          <></>
+          <Button mx={2} onClick={() => login()}>
+            Sign In
+          </Button>
         )}
       </Flex>
     </Flex>
