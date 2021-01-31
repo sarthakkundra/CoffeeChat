@@ -1,12 +1,17 @@
-import { Flex, Heading, IconButton, Link } from "@chakra-ui/react";
+import { Button, Flex, Heading, IconButton, Link } from "@chakra-ui/react";
 import { Bell, User } from "@emotion-icons/boxicons-solid";
 import React, { useContext, Fragment } from "react";
 import { useNavigate } from "@reach/router";
 import { ReactComponent as Logo } from "../images/coffeechat-05.svg";
+import {
+  useAuth,
+  useLoginWithGoogle,
+} from "../context/authentication/AuthContext";
 
 export default function Header() {
-  const handleAuth = () => {};
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const { logout } = useLoginWithGoogle();
   return (
     <Flex
       maxW="5xl"
@@ -45,6 +50,13 @@ export default function Header() {
           onClick={() => navigate("/profile")}
           isRound
         />
+        {isAuthenticated ? (
+          <Button mx={2} onClick={() => logout()}>
+            Sign Out
+          </Button>
+        ) : (
+          <></>
+        )}
       </Flex>
     </Flex>
   );

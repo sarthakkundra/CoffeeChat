@@ -11,6 +11,7 @@ import {
 import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header";
+import withAuth from "../../hocs/withAuth";
 import Education from "./education";
 import Experience from "./experience";
 import Personal from "./personal";
@@ -42,7 +43,7 @@ export interface User {
   experience?: ExperienceData;
 }
 
-export default function Profile(props: RouteComponentProps) {
+export default withAuth(function Profile(props: RouteComponentProps) {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
@@ -96,4 +97,4 @@ export default function Profile(props: RouteComponentProps) {
       </Grid>
     </>
   );
-}
+});

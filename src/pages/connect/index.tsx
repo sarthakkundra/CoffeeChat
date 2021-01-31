@@ -2,10 +2,11 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header";
+import withAuth from "../../hocs/withAuth";
 import Carousel from "./carousel";
 import Filter from "./filter";
 
-export default function Connect(props: RouteComponentProps) {
+export default withAuth(function Connect(props: RouteComponentProps) {
   const [profiles, setProfiles] = useState<any>([]);
   const [industryFilter, setIndustryFilter] = useState();
   const [availabilityFilter, setAvailabilityFilter] = useState();
@@ -69,4 +70,4 @@ export default function Connect(props: RouteComponentProps) {
       </Flex>
     </>
   );
-}
+});
