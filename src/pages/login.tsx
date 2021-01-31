@@ -1,12 +1,13 @@
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { RouteComponentProps } from "@reach/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/header";
 import "firebase/app";
 import "firebase/auth";
 import { useLoginWithGoogle } from "../context/authentication/AuthContext";
+import withoutAuth from "../hocs/withoutAuth";
 
-export default function Login(props: RouteComponentProps) {
+export default withoutAuth(function Login(props: RouteComponentProps) {
   const { login } = useLoginWithGoogle();
 
   const onGoogleSignIn = async () => {
@@ -26,4 +27,4 @@ export default function Login(props: RouteComponentProps) {
       </Flex>
     </>
   );
-}
+});

@@ -6,35 +6,42 @@ import app from "../../firebaseConfig";
 interface AuthContext {
   isAuthenticated: boolean;
   isLoading: boolean;
-  setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   firebaseApp?: firebase.app.App;
   user?: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const AuthContext = React.createContext<AuthContext>({
   isAuthenticated: false,
   isLoading: true,
-  setAuthenticated: () => {},
   firebaseApp: app,
-  setUser: () => {},
 });
 
 const AuthProvider = ({ children }: any) => {
   const [isAuthenticated, setAuthenticated] = useState(false);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [firebaseApp, setFirebaseApp] = useState(app);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<firebase.User | null>();
+
+  useState(() => {
+    firebase.auth().onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+        setAuthenticated(true);
+      } else {
+        setUser(null);
+        setAuthenticated(false);
+      }
+      setLoading(false);
+    });
+  });
 
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
         isLoading,
-        setAuthenticated,
         firebaseApp,
         user,
-        setUser,
       }}
     >
       {children}
@@ -43,21 +50,16 @@ const AuthProvider = ({ children }: any) => {
 };
 
 export const useLoginWithGoogle = () => {
-  const context = useContext(AuthContext);
   const login = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        context.setUser(result.user);
-        context.setAuthenticated(true);
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+    firebase.auth().signInWithPopup(provider);
   };
   return { login };
+};
+
+export const useAuth = () => {
+  const { isAuthenticated, isLoading } = useContext(AuthContext);
+  return { isAuthenticated, isLoading };
 };
 
 export default AuthProvider;
