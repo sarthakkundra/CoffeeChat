@@ -1,6 +1,4 @@
-import { Box, Flex, Heading, IconButton, Input, Text } from "@chakra-ui/react";
-import { RouteComponentProps } from "@reach/router";
-import { send } from "process";
+import { Flex, Heading, IconButton, Input, Text } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { useChat } from "../../context/ChatProvider";
 import { Send } from "@emotion-icons/boxicons-regular";
@@ -27,13 +25,14 @@ export default withAuth(function ChatBox() {
 
   return (
     <Flex overflow="auto" h="100%">
-      <ChannelList />
+      {/* <ChannelList /> */}
       <Flex
         flex={4}
+        mx={4}
         direction="column"
         border="1px solid rgba(0,0,0,0.2)"
         borderRadius={10}
-        maxH="100%"
+        h="100%"
       >
         <Flex
           boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;"
@@ -54,14 +53,14 @@ export default withAuth(function ChatBox() {
           {messages.map((message) => {
             return (
               <Flex
-                p={2}
+                p={4}
                 m={1}
                 maxW="40%"
-                bg={message.author === user?.uid ? "#D5B9B2" : "#d5c2b2"}
+                bg={message.author === user?.uid ? "#F8AD9D" : "#DDBEA9"}
                 alignSelf={
                   message.author === user?.uid ? "flex-end" : "flex-start"
                 }
-                borderRadius="full"
+                borderRadius={10}
               >
                 <Text>{message.text}</Text>
               </Flex>

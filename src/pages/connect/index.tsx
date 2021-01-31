@@ -23,6 +23,7 @@ export default withAuth(function Connect(props: RouteComponentProps) {
   useEffect(() => {
     setProfiles([
       {
+        uid: "FzY2QhlaoxkCsghSpFuA",
         name: "Utkarsh",
         image:
           "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
@@ -36,18 +37,6 @@ export default withAuth(function Connect(props: RouteComponentProps) {
       },
       {
         name: "Sarthak",
-        image:
-          "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-        position: "CTO & Co-founder",
-      },
-      {
-        name: "Angela",
-        image:
-          "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
-        position: "CTO & Co-founder",
-      },
-      {
-        name: "Angela",
         image:
           "https://avatars.githubusercontent.com/u/19630580?s=460&u=983d41ffb2fabf9d6891998384802d33c4509e3d&v=4",
         position: "CTO & Co-founder",

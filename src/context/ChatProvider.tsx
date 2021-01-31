@@ -3,6 +3,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 import { FirebaseAuth } from "react-firebaseui";
 import { useAuth } from "./authentication/AuthContext";
+import cuid from "cuid";
 
 export interface Message {
   text: string;
@@ -30,6 +31,10 @@ const ChatProvider = ({ children, roomId }: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [chatRoom, setChatRoom] = useState<
     firebase.firestore.DocumentReference<firebase.firestore.DocumentData>
+  >();
+
+  const [chatRooms, setChatRooms] = useState<
+    firebase.firestore.CollectionReference<firebase.firestore.DocumentData>
   >();
 
   useEffect(() => {
@@ -61,7 +66,6 @@ const ChatProvider = ({ children, roomId }: any) => {
 
 export const useChat = () => {
   const context = useContext(ChatContext);
-  const { messages } = context;
   const { user } = useAuth();
   const sendMessage = (text: string) => {
     const { chatRoom, messages } = context;
@@ -73,7 +77,19 @@ export const useChat = () => {
     chatRoom?.update({ messages: [...messages, message] });
   };
 
-  return { messages, sendMessage };
+  const createRoom = async (userID: string) => {
+    const db = firebase.firestore();
+    const collection = db.collection("chatrooms");
+    const uid = cuid();
+    await collection.doc(uid).set({
+      messages: [],
+      users: [user?.uid, userID],
+    });
+    return uid;
+  };
+
+  const { messages } = context;
+  return { messages, sendMessage, createRoom };
 };
 
 export default ChatProvider;

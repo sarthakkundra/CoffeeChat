@@ -8,13 +8,17 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { Heart, RightArrowAlt } from "@emotion-icons/boxicons-regular";
+import { useNavigate } from "@reach/router";
 import React from "react";
+import { useChat } from "../../context/ChatProvider";
 
 export interface ListProps {
   profiles: any[];
 }
 
 export default function List({ profiles }: ListProps) {
+  const { createRoom } = useChat();
+  const navigate = useNavigate();
   return (
     <Flex
       direction="column"
@@ -74,6 +78,10 @@ export default function List({ profiles }: ListProps) {
                       aria-label="like"
                       icon={<RightArrowAlt />}
                       variant="ghost"
+                      onClick={async () => {
+                        const roomID = await createRoom(profile.uid);
+                        navigate(`/chat/${roomID}`);
+                      }}
                     />
                   </Box>
                 </Flex>
