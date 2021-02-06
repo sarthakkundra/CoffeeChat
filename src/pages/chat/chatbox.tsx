@@ -75,7 +75,7 @@ export default withAuth(function ChatBox(props: any) {
           <Flex mb={4} p={4}>
             <IconButton
               aria-label="video"
-              icon={<VideoPlus />}
+              icon={<VideoPlus size="24" />}
               onClick={() => navigate("https://meet.google.com/new")}
             />
           </Flex>
